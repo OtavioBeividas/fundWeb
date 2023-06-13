@@ -22,11 +22,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
       if(!isset($_SESSION)){
         session_start();
       }
-
-      $_SESSION['id'] = $usuario['id'];
-
       header("Location: index.php");
-
     } else {
       echo "Falha ao logar! E-mail o senha incorretos";
     }

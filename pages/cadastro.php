@@ -1,21 +1,38 @@
 <?php
-// Verifica se o formulário foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Recupera os dados do formulário
-  $nome = $_POST['nome'];
-  $email = $_POST['email'];
-  $senha = $_POST['senha'];
 
-  // Aqui você pode adicionar a lógica para cadastrar o usuário no banco de dados
+include('conexao.php');
 
-  // Exemplo: inserir o usuário em uma tabela 'usuarios'
-  // $conexao = mysqli_connect('host', 'usuario', 'senha', 'banco');
-  // $query = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
-  // mysqli_query($conexao, $query);
+if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome'])){
+  if(strlen($_POST['email']) == 0){
+    echo "Preencha seu e-mail";
+  } else if(strlen($_POST['senha']) == 0){
+    echo "Preencha sua senha";
+  } else if(strlen($_POST['nome']) == 0){
+    echo "Preencha seu nome";
+  } else {
+    $nome = $mysqli->real_escape_string($_POST['nome']);
+    $email = $mysqli->real_escape_string($_POST['email']);
+    $senha = $mysqli->real_escape_string($_POST['senha']);
 
-  // Redireciona para a página de login após o cadastro
-  header('Location: login.php');
-  exit;
+    $sql_code = "SELECT COUNT(*) AS total from usuarios where email = '$email'";
+    $result = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
+    $row = mysqli_fetch_assoc($result);
+    
+    if($row['total'] == 1){
+      $_SESSION['usuario_existe'] = true;
+      header('Location: cadastro.php');
+      exit;
+    }
+
+    $sql_code = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', $email', '$senha'";
+
+    if(!isset($_SESSION)){
+      session_start();
+    } else {
+      echo "Falha ao logar! E-mail o senha incorretos";
+    }
+    header("Location: index.php");
+  }
 }
 ?>
 
