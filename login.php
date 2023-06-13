@@ -1,29 +1,21 @@
 <?php
-session_start();
+// Verifica se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Recupera os dados do formulário
+  $email = $_POST['email'];
+  $senha = $_POST['senha'];
 
-// Verificar se o usuário já está logado
-if (isset($_SESSION['username'])) {
-  header("Location: index.php");
-  exit();
-}
+  // Aqui você pode adicionar a lógica de autenticação do usuário
+  // Verificar se o usuário existe no banco de dados e se a senha está correta
 
-// Verificar se o formulário foi submetido
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  // Verificar as credenciais do usuário (substitua com sua lógica de autenticação real)
-  $username = $_POST["username"];
-  $password = $_POST["password"];
-
-  // Verificação fictícia de credenciais
-  if ($username === "admin" && $password === "senha") {
-    // Autenticação bem-sucedida, definir a sessão do usuário
-    $_SESSION['username'] = $username;
-
-    // Redirecionar para a página inicial
-    header("Location: index.php");
-    exit();
+  // Exemplo de autenticação simples apenas para demonstração
+  if ($email === 'usuario@example.com' && $senha === 'senha123') {
+    // Autenticação válida, redireciona para a página inicial do sistema
+    header('Location: index.php');
+    exit;
   } else {
-    // Credenciais inválidas, exibir mensagem de erro
-    $error = "Credenciais inválidas";
+    // Autenticação inválida, exibe mensagem de erro
+    $erro = 'Email ou senha inválidos';
   }
 }
 ?>
@@ -35,21 +27,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1>Login</h1>
+<header>
+    <div class="container">
+      <img src="amazon.png" alt="Logo da Livraria" height="50" width="50">
+      <nav>
+        <ul>
+          <li><a href="books.php">Livros</a></li>
+          <li><a href="adicionar_livros.php">Cadastrar Livros</a></li>
+          <li><a href="#">Carrinho</a></li>
+          <li><a href="logout.php">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <?php if (isset($error)) { ?>
-    <p class="error"><?php echo $error; ?></p>
-  <?php } ?>
+  <div class="container">
+    <h2>Login</h2>
+    <?php if (isset($erro)) { ?>
+      <p class="erro"><?php echo $erro; ?></p>
+    <?php } ?>
+    <form method="POST" action="login.php">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Não tem uma conta? <a href="cadastro.php">Cadastre-se</a></p>
+  </div>
 
-  <form method="POST">
-    <label for="username">Usuário:</label>
-    <input type="text" id="username" name="username" required>
-
-    <label for="password">Senha:</label>
-    <input type="password" id="password" name="password" required>
-
-    <input type="submit" value="Entrar">
-  </form>
-    <p>Ainda não tem uma conta? <a href="cadastro.php">Cadastre-se</a></p>
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Minha Livraria. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>

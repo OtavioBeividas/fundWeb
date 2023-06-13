@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+// Verifica se o carrinho de compras está vazio
+if (!isset($_SESSION['carrinho'])) {
+  $_SESSION['carrinho'] = array();
+}
+
+// Adiciona um produto ao carrinho
+function adicionarAoCarrinho($produto) {
+  array_push($_SESSION['carrinho'], $produto);
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +25,8 @@ session_start();
       <nav>
         <ul>
           <li><a href="books.php">Livros</a></li>
-          <li><a href="add_book.php">Cadastrar Livros</a></li>
-          <li><a href="#">Carrinho</a></li>
+          <li><a href="adicionar_livros.php">Cadastrar Livros</a></li>
+          <li><a href="carrinho.php">Carrinho</a></li>
           <li><a href="logout.php">Sair</a></li>
         </ul>
       </nav>
@@ -35,20 +45,19 @@ session_start();
     <div class="container">
       <h2>Livros em Destaque</h2>
       <div class="book">
-        <img src="diariobanana.jpg" alt="Livro 1">
+        <img src="diariobanana.jpg" alt="Livro1">
         <h3>Diario de um banana</h3>
         <p>Jeff Kinney</p>
         <p class="price">$19.99</p>
-        <a href="#" class="button">Adicionar ao Carrinho</a>
+        <a href="adicionar_carrinho.php?produto=Livro1" class="button">Adicionar ao Carrinho</a>
       </div>
       <div class="book">
-        <img src="harrypotter.jpg" alt="Livro 2">
+        <img src="harrypotter.jpg" alt="Livro2">
         <h3>Harry Potter e a Pedra Filosofal</h3>
         <p>J.K. Rowling</p>
         <p class="price">$24.99</p>
-        <a href="#" class="button">Adicionar ao Carrinho</a>
-      </div>
-      <!-- Adicione mais livros em destaque aqui -->
+        <a href="adicionar_carrinho.php?produto=Livro2" class="button">Adicionar ao Carrinho</a>
+    </div>
     </div>
   </div>
 
