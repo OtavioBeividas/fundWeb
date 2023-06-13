@@ -23,12 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
   <title>Cadastro de Usuário</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <header>
     <div class="container">
-      <img src="amazon.png" alt="Logo da Livraria" height="50" width="50">
+      <img src="images/amazon.png" alt="Logo da Livraria" height="50" width="50">
     </div>
   </header>
 

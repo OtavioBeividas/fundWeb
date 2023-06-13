@@ -24,17 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 <header>
     <div class="container">
-      <img src="amazon.png" alt="Logo da Livraria" height="50" width="50">
+      <img src="images/amazon.png" alt="Logo da Livraria" height="50" width="50">
       <nav>
         <ul>
           <li><a href="books.php">Livros</a></li>
           <li><a href="adicionar_livros.php">Cadastrar Livros</a></li>
-          <li><a href="#">Carrinho</a></li>
+          <li><a href="carrinho.php">Carrinho</a></li>
           <li><a href="logout.php">Sair</a></li>
         </ul>
       </nav>
@@ -55,11 +55,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     <p>Não tem uma conta? <a href="cadastro.php">Cadastre-se</a></p>
   </div>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2023 Minha Livraria. Todos os direitos reservados.</p>
-    </div>
-  </footer>
 </body>
 </html>

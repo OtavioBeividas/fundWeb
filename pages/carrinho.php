@@ -24,7 +24,7 @@ if (empty($_SESSION['carrinho'])) {
 <html>
 <head>
   <title>Minha Livraria - Carrinho de Compras</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
   <header>
