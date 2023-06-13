@@ -37,7 +37,6 @@ function adicionarAoCarrinho($produto) {
     <div class="container">
       <h1>Bem-vindo à Minha Livraria</h1>
       <p>Encontre os melhores livros com os melhores preços!</p>
-      <a href="books.php" class="button">Ver Livros</a>
     </div>
   </div>
 

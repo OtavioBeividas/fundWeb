@@ -1,33 +1,32 @@
 <?php
-// Verifica se o formulário foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Recupera os dados do formulário
-  $nome = $_POST['nome'];
-  $autor = $_POST['autor'];
-  $valor = $_POST['valor'];
-  $descricao = $_POST['descricao'];
-  
-  // Verifica se foi enviada uma imagem
-  if ($_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-    $imagem_temp = $_FILES['imagem']['tmp_name'];
-    $imagem_nome = $_FILES['imagem']['name'];
-    $imagem_extensao = pathinfo($imagem_nome, PATHINFO_EXTENSION);
-    $imagem_destino = 'imagens/' . uniqid('livro_') . '.' . $imagem_extensao;
 
-    // Move a imagem para o diretório de destino
-    move_uploaded_file($imagem_temp, $imagem_destino);
+include('conexao.php');
+
+if(isset($_POST['autor']) || isset($_POST['valor']) || isset($_POST['nome'])){
+  if(strlen($_POST['valor']) == 0){
+    echo "Preencha o campo 'valor'";
+  } else if(strlen($_POST['nome']) == 0){
+    echo "Preencha o campo 'nome'";
+  } else if(strlen($_POST['autor']) == 0){
+    echo "Preencha o campo 'autor'";
+  } else {
+    $nome = $_POST['nome'];
+    $autor = $_POST['autor'];
+    $valor = $_POST['valor'];
+    $descricao = $_POST['descricao'];
+
+    $sql = "INSERT INTO livros (nome, autor, valor, descricao) VALUES ('$nome', '$autor', '$valor', '$descricao')";
+
+    if (mysqli_query($mysqli, $sql)) {
+        echo "Livro cadastrado com sucesso!";
+    } else {
+        echo "Erro ao cadastrar o Livro: " . mysqli_error($mysqli);
+    }
+
+    // Fechar a conexão com o banco de dados
+    mysqli_close($mysqli);
+    header("Location: books.php");
   }
-
-  // Aqui você pode adicionar a lógica para cadastrar o livro no banco de dados
-
-  // Exemplo: inserir o livro em uma tabela 'livros'
-  // $conexao = mysqli_connect('host', 'usuario', 'senha', 'banco');
-  // $query = "INSERT INTO livros (nome, autor, valor, descricao, imagem) VALUES ('$nome', '$autor', '$valor', '$descricao', '$imagem_destino')";
-  // mysqli_query($conexao, $query);
-
-  // Redireciona para a página de livros após o cadastro
-  header('Location: books.php');
-  exit;
 }
 ?>
 
@@ -54,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <div class="container">
     <h2>Cadastrar Livro</h2>
-    <form method="POST" action="add_book.php" enctype="multipart/form-data">
+    <form method="POST" action="adicionar_livros.php" enctype="multipart/form-data">
       <label for="nome">Nome:</label>
       <input type="text" id="nome" name="nome" required>
       <label for="autor">Autor:</label>
@@ -63,8 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input type="number" id="valor" name="valor" step="0.01" required>
       <label for="descricao">Descrição:</label>
       <textarea id="descricao" name="descricao" required></textarea>
-      <label for="imagem">Imagem:</label>
-      <input type="file" id="imagem" name="imagem" accept="image/*" required>
       <button type="submit">Cadastrar</button>
     </form>
   </div>

@@ -10,28 +10,31 @@ if(isset($_POST['email']) || isset($_POST['senha']) || isset($_POST['nome'])){
   } else if(strlen($_POST['nome']) == 0){
     echo "Preencha seu nome";
   } else {
-    $nome = $mysqli->real_escape_string($_POST['nome']);
-    $email = $mysqli->real_escape_string($_POST['email']);
-    $senha = $mysqli->real_escape_string($_POST['senha']);
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-    $sql_code = "SELECT COUNT(*) AS total from usuarios where email = '$email'";
-    $result = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
-    $row = mysqli_fetch_assoc($result);
+    // Validar os dados recebidos (aplicar validações necessárias)
+    $sqlVerificar = "SELECT * FROM usuarios WHERE email = '$email'";
+    $resultado = mysqli_query($mysqli, $sqlVerificar);
     
-    if($row['total'] == 1){
-      $_SESSION['usuario_existe'] = true;
-      header('Location: cadastro.php');
-      exit;
+    if (mysqli_num_rows($resultado) > 0) {
+        // Usuário já existe, exiba uma mensagem de erro ou redirecione para outra página
+        echo "O email informado já está cadastrado.";
+        exit;
     }
+    // Inserir os dados no banco de dados
+    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
 
-    $sql_code = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', $email', '$senha'";
-
-    if(!isset($_SESSION)){
-      session_start();
+    if (mysqli_query($mysqli, $sql)) {
+        echo "Usuário cadastrado com sucesso!";
     } else {
-      echo "Falha ao logar! E-mail o senha incorretos";
+        echo "Erro ao cadastrar o usuário: " . mysqli_error($mysqli);
     }
-    header("Location: index.php");
+
+    // Fechar a conexão com o banco de dados
+    mysqli_close($mysqli);
+    header("Location: login.php");
   }
 }
 ?>

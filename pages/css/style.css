@@ -83,6 +83,45 @@ header ul li {
   height: 1px;
 }
 
+.book-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.book-table th, .book-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.book-table th {
+  background-color: #f2f2f2;
+}
+
+.book-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.book-table tr:hover {
+  background-color: #ddd;
+}
+
+.book-table td:nth-child(1), .book-table th:nth-child(1) {
+  width: 30%;
+}
+
+.book-table td:nth-child(2), .book-table th:nth-child(2) {
+  width: 40%;
+}
+
+.book-table td:nth-child(3), .book-table th:nth-child(3) {
+  width: 20%;
+}
+
+.book-table td:nth-child(4), .book-table th:nth-child(4) {
+  width: 10%;
+}
+
+
 .book-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -187,3 +226,7 @@ header ul li {
 .footer a:hover {
   text-decoration: underline;
 }
+
+
+
+
