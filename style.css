@@ -1,0 +1,189 @@
+/* style.css */
+
+/* Reset CSS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 20px;
+}
+
+header {
+  background-color: #131921;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+}
+
+header ul li {
+  margin-right: 10px;
+}
+
+.main-banner {
+  background-color: #131921;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.main-banner h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.main-banner p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.main-banner a {
+  display: inline-block;
+  background-color: #f0c14b;
+  color: #131921;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.main-banner a:hover {
+  background-color: #d4b446;
+}
+
+/* style.css */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.container image{
+  width: 1px;
+  height: 1px;
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.book {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.book img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.book h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.book p {
+  margin-bottom: 10px;
+}
+
+.book .price {
+  font-weight: bold;
+  color: #b12704;
+}
+
+.book .button {
+  display: inline-block;
+  background-color: #f0c14b;
+  color: #131921;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.book .button:hover {
+  background-color: #d4b446;
+}
+
+
+
+.book img {
+  width: 250px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.book h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.book p {
+  margin-bottom: 10px;
+}
+
+.book .price {
+  font-weight: bold;
+  color: #b12704;
+}
+
+.book .button {
+  display: inline-block;
+  background-color: #f0c14b;
+  color: #131921;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.book .button:hover {
+  background-color: #d4b446;
+}
+
+.footer {
+  background-color: #232f3e;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
